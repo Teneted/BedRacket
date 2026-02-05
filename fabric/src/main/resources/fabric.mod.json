@@ -15,10 +15,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.teneted.bedracket.fabric.BedracketFabric"
+      "org.teneted.bedracket.fabric.BedRacketFabric"
     ],
     "client": [
-      "org.teneted.bedracket.fabric.client.BedracketFabricClient"
+      "org.teneted.bedracket.fabric.client.BedRacketFabricClient"
     ]
   },
   "mixins": [

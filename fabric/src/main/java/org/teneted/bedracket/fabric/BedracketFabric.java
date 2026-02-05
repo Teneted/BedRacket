@@ -1,9 +1,9 @@
 package org.teneted.bedracket.fabric;
 
-import org.teneted.bedracket.Bedracket;
+import org.teneted.bedracket.BedRacket;
 import net.fabricmc.api.ModInitializer;
 
-public final class BedracketFabric implements ModInitializer {
+public final class BedRacketFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         // This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -11,6 +11,6 @@ public final class BedracketFabric implements ModInitializer {
         // Proceed with mild caution.
 
         // Run our common setup.
-        Bedracket.init();
+        BedRacket.init();
     }
 }

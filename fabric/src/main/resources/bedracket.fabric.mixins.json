@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "org.teneted.bedracket.fabric.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "ClientLevel_EntityCallbacksMixin",
+    "ClientLevelMixin"
+  ],
+  "mixins": [
+    "PersistentEntitySectionManagerMixin",
+    "ServerLevel_EntityCallbacksMixin",
+    "ServerLevelMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
