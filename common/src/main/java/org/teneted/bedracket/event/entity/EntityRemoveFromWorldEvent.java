@@ -18,4 +18,5 @@ public class EntityRemoveFromWorldEvent extends EntityEvent {
     public Level getLevel() {
         return level;
     }
+
 }

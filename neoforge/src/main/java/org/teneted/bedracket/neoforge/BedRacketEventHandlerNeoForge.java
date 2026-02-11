@@ -9,12 +9,12 @@ import org.teneted.bedracket.event.entity.EntityAddToWorldEvent;
 import org.teneted.bedracket.event.entity.EntityRemoveFromWorldEvent;
 
 @EventBusSubscriber
-public class BedRacketEventHandler {
+public class BedRacketEventHandlerNeoForge {
 
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
-        EntityAddToWorldEvent bedracketEvent = (EntityAddToWorldEvent) BedRacket.EVENT_BUS.post(EntityAddToWorldEvent.class,
-                new EntityAddToWorldEvent(event.getEntity(), event.getLevel()));
+        EntityAddToWorldEvent bedracketEvent = new EntityAddToWorldEvent(event.getEntity(), event.getLevel());
+        BedRacket.EVENT_BUS.callEvent(bedracketEvent);
         if (bedracketEvent.isCancelled()) {
             event.setCanceled(bedracketEvent.isCancelled());
         }
@@ -22,7 +22,6 @@ public class BedRacketEventHandler {
 
     @SubscribeEvent
     public static void onEntityLeaveLevel(EntityLeaveLevelEvent event) {
-        BedRacket.EVENT_BUS.post(EntityRemoveFromWorldEvent.class,
-                new EntityRemoveFromWorldEvent(event.getEntity(), event.getLevel()));
+      new EntityRemoveFromWorldEvent(event.getEntity(), event.getLevel()).callEvent();
     }
 }

@@ -39,7 +39,7 @@ public abstract class Event {
      * @return false if event was cancelled, if cancellable. otherwise true.
      */
     public boolean callEvent() {
-        BedRacket.EVENT_BUS.post(this.getClass(), this);
+        BedRacket.EVENT_BUS.callEvent(this);
         if (this instanceof Cancellable) {
             return !((Cancellable) this).isCancelled();
         } else {

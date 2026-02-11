@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public final class BedRacket {
+public class BedRacket {
     public static final String MOD_ID = "bedracket";
     public static Logger LOGGER = LogUtils.getLogger();
 
@@ -73,31 +73,31 @@ public final class BedRacket {
         return registered;
     }
 
-    public Event post(Class<? extends Event> type, Event event) {
+    public Event callEvent(Event event) {
         try {
-            post(eventHandlers.getOrDefault(type, new ArrayList<>()), event);
+            fireEvent(eventHandlers.getOrDefault(event.getClass(), new ArrayList<>()), event);
         } catch (EventException e) {
             throw new RuntimeException(e);
         }
         return event;
     }
 
-    public void post(List<RegisteredListener> listeners, Event event) throws EventException {
+    public void fireEvent(List<RegisteredListener> listeners, Event event) throws EventException {
         if (event.isAsynchronous()) {
             Multithreading.runAsync(() -> {
                 try {
-                    post0(listeners, event);
+                    fireEvent0(listeners, event);
                 } catch (EventException e) {
                     e.printStackTrace();
                     LOGGER.error( "Could not pass event " + event.getEventName() + " to Mod", e);
                 }
             });
         } else {
-            post0(listeners, event);
+            fireEvent0(listeners, event);
         }
     }
 
-    public void post0(List<RegisteredListener> listeners, Event event) throws EventException {
+    public void fireEvent0(List<RegisteredListener> listeners, Event event) throws EventException {
         for (RegisteredListener registeredListener : listeners) {
             Method method = registeredListener.getMethod();
             try {
@@ -117,7 +117,7 @@ public final class BedRacket {
         }
     }
 
-    public void unPostEvent(Event event) {
+    public void unRegisterEvent(Event event) {
         eventHandlers.remove(event.getClass());
     }
 }
