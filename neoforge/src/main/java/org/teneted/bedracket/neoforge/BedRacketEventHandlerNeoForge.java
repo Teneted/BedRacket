@@ -4,9 +4,11 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityLeaveLevelEvent;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.teneted.bedracket.BedRacket;
 import org.teneted.bedracket.event.entity.EntityAddToWorldEvent;
 import org.teneted.bedracket.event.entity.EntityRemoveFromWorldEvent;
+import org.teneted.bedracket.event.server.ServerLoadEvent;
 
 @EventBusSubscriber
 public class BedRacketEventHandlerNeoForge {
@@ -23,5 +25,10 @@ public class BedRacketEventHandlerNeoForge {
     @SubscribeEvent
     public static void onEntityLeaveLevel(EntityLeaveLevelEvent event) {
       new EntityRemoveFromWorldEvent(event.getEntity(), event.getLevel()).callEvent();
+    }
+
+    @SubscribeEvent
+    public static void onServerStarting(ServerStartingEvent event) {
+        new ServerLoadEvent(event.getServer(), ServerLoadEvent.LoadType.STARTUP).callEvent();
     }
 }

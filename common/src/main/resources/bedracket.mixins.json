@@ -6,6 +6,14 @@
   "client": [
   ],
   "mixins": [
+    "commands.CommandsMixin",
+    "server.commands.ReloadCommandsMixin",
+    "server.level.ServerLevelMixin",
+    "world.level.block.FarmBlockMixin",
+    "world.level.block.LeavesBlockMixin",
+    "world.level.block.NoteBlockMixin",
+    "world.level.block.entity.BellBlockEntityMixin",
+    "world.level.block.entity.VaultBlockEntity_ServerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
